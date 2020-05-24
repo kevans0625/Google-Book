@@ -1,6 +1,6 @@
 import React from "react";
 
-function Search(){
+function Header(){
 
     return(
       <div>
@@ -32,4 +32,4 @@ function Search(){
       );
 
 }
-export default Search;
+export default Header;
