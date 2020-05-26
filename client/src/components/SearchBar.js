@@ -1,11 +1,27 @@
 import React from "react"
 
-function SearchBar(){
+export function Input(props){
  return (
-    <input className="transition-colors duration-100 ease-in-out bg-white
-     shadow-md focus:outline-0 border border-transparent placeholder-gray-600 
-     rounded-lg py-2 pr-4 pl-10 block w-full appearance-none leading-normal ds-input" 
-     placeholder="Search book information here:"/>
- )
-}
-export default SearchBar;
+     
+     <div className=" form-group bg-white flex items-center rounded-full shadow-xl">
+    <input className="form-control rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none" id="search" 
+    type="text" placeholder="Search"  {...props}/>
+        </div>
+        );
+        }
+  
+
+export function SearchButton(props){
+    return (
+                
+    <div className="container">
+      <button className=" form-control bg-gray-500 text-white rounded-full p-2 hover:bg-blue-400 focus:outline-none w-12 h-12 
+      flex items-center justify-center" {...props}>
+        ->
+      </button>
+      </div>
+
+        )
+        }
+    
+   
