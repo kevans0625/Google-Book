@@ -6,7 +6,7 @@ export default {
 
   // Saves a book to the database
   searchBook: function(query) {
-    return axios.get(BASEURL + query );
+    return axios.get(BASEURL + query);
   
   }
 };

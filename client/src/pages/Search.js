@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Input, SearchButton }  from "../components/SearchBar";
-import BookResults from "../components/BookSearchCard";
+// import BookResults from "../components/BookSearchCard";
 import API from "../utils/API";
+import {List, ListItem} from "../components/BookSearchCard";
 
 function Search(){
     const [books, setBooks] = useState([])
@@ -11,9 +12,6 @@ function Search(){
         error: ""
     })
 
-    // useEffect(() => {
-    //     loadBooks()
-    //   }, [])
     
 const loadBooks = query => {
         console.log(query)
@@ -23,6 +21,7 @@ const loadBooks = query => {
                 throw new Error(res.data.items);
             }
             else {
+                console.log(res)
                 // store response in a array
                 let results = res.data.items
                 //map through the array 
@@ -44,12 +43,7 @@ const loadBooks = query => {
             }
         })
         .catch(err => setBooks({ error: err.items }));
-        // console.log(res)
-        // setBooks({ result: res.data })})
-        // .then(
-        //     console.log(books)
-        //     )
-        // .catch(err => console.log(err));
+
       };
 
     const handleInputChange = event =>{
@@ -78,14 +72,34 @@ const loadBooks = query => {
             <br/>
             <div className="text-gray-900 font-bold text-xl mb-2">RESULTS</div>
             <br/>
-
+            {/* <BookResults/> */}
             {console.log(bookSet)}
-           {/* { books.map(book =>(
-            console.log(book.id)
-        ))} */}
-<BookResults
-book={bookSet}
-/>
+            {bookSet ? (
+                  <List>
+                
+                {bookSet.map(book =>(
+        //    <BookResults
+        //    key={book.id}
+        //    title={book.title}
+        //    author={book.authors}
+        //    description={book.description}
+        //    src={book.image}
+        //    link={book.link}
+        //    />
+             <ListItem key={book.id}>
+               {/* <Link to={"/books/" + book._id}> */}
+                 <strong>
+                   {book.title} by {book.author}
+                 </strong>
+               {/* </Link> */}
+               {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
+             </ListItem>
+           ))}
+        
+         </List>
+          ) : (
+            <h3>No Results to Display</h3>
+          )})
 {/* {books.map(book => (
                console.log(book.title)
                   
