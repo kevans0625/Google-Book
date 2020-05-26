@@ -52,8 +52,20 @@ const loadBooks = query => {
             <div className="text-gray-900 font-bold text-xl mb-2">RESULTS</div>
             <br/>
             {console.log(books.result)}
+           {/* { books.map(book =>(
+            console.log(book.title)
+        ))} */}
+
+{books.map(book => (
+               console.log(book.title)
+                  
+                ))}
+             
             {/* {books.length ? (
         <BookResults/>
+        books.map(book =>(
+            book.title
+        ))
                 //image 
                 //author 
                 ///title 
