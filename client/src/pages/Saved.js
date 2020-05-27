@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {SaveBtn, ViewBtn} from "../components/btn";
 
 import API from "../utils/API";
 // import SavedResults from "../components/SavedCard"
@@ -16,7 +17,7 @@ function Saved(){
   function loadBooks() {
     API.getBooks()
       .then(res => 
-       { console.log(res)
+       {console.log(res)
         setBooks(res.data)}
       )
       .catch(err => console.log(err));
@@ -37,8 +38,9 @@ function Saved(){
                    {book.title} by {book.author}
                  </strong>
                {/* </Link> */}
-               {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
-             </ListItem>
+               {/* <SaveBtn onClick={() => saveBook(book._id)} />
+                    <ViewBtn href={book.link}/> */}
+                  </ListItem>
            ))}
          </List>
            ) : (

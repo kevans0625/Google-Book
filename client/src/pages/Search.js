@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {SaveBtn, ViewBtn} from "../components/btn";
 import { Input, SearchButton }  from "../components/SearchBar";
 // import BookResults from "../components/BookSearchCard";
 import API from "../utils/API";
@@ -46,6 +47,13 @@ const loadBooks = query => {
 
       };
 
+        // Saves a book to the database with a given id, then reloads books from the db
+  function saveBook(id) {
+    API.saveBook(id)
+      .then(res => loadBooks())
+      .catch(err => console.log(err));
+  }
+
     const handleInputChange = event =>{
         const {name, value} = event.target
         setFormObject({...formObject, [name]: value})
@@ -84,35 +92,15 @@ const loadBooks = query => {
                  <strong>
                    {book.title} by {book.author}
                  </strong>
-               {/* </Link> */}
-               {/* <DeleteBtn onClick={() => deleteBook(book._id)} /> */}
+                 <SaveBtn onClick={() => saveBook(book.id)} />
+                    <ViewBtn href={book.link}/>
              </ListItem>
            ))}
         
          </List>
           ) : (
             <h3>No Results to Display</h3>
-          )})
-{/* {books.map(book => (
-               console.log(book.title)
-                  
-                ))}
-              */}
-            {/* {books.length ? (
-        <BookResults/>
-        books.map(book =>(
-            book.title
-        ))
-                //image 
-                //author 
-                ///title 
-                //description 
-
-        ))}
-
-      ) : ( 
-            <h3>No Results to Display</h3>
-            )}  */}
+          )}
         </div>
       );
 }
