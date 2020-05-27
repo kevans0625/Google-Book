@@ -69,6 +69,7 @@ const loadBooks = query => {
     let bookSet = books.results
     return(  
     <div>
+      <div className="container"  >
         <form>
         <Input
             name="search" 
@@ -76,12 +77,15 @@ const loadBooks = query => {
         />
         <SearchButton 
         onClick={handleFormSubmit}/>
+       
         </form>
             <br/>
             <div className="text-gray-900 font-bold text-xl mb-2">RESULTS</div>
             <br/>
             {/* <BookResults/> */}
             {console.log(bookSet)}
+
+      </div>
             {bookSet ? (
            <div className="container">
                 
@@ -89,7 +93,7 @@ const loadBooks = query => {
 
 
   <div className="card mb-3" key={book._id} >
-  <div class="card-header">
+  <div className="card-header">
   <h5 className="card-title">{book.title}</h5>
   </div>
   <div className="row no-gutters">
