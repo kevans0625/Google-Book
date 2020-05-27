@@ -78,14 +78,7 @@ const loadBooks = query => {
                   <List>
                 
                 {bookSet.map(book =>(
-        //    <BookResults
-        //    key={book.id}
-        //    title={book.title}
-        //    author={book.authors}
-        //    description={book.description}
-        //    src={book.image}
-        //    link={book.link}
-        //    />
+
              <ListItem key={book.id}>
                {/* <Link to={"/books/" + book._id}> */}
                  <strong>
