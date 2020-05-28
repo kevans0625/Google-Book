@@ -24,7 +24,12 @@ function Saved(){
       };
       console.log(books)
 
-
+      function deleteBook(id) {
+        API.deleteBook(id)
+          .then(res => loadBooks())
+          .catch(err => console.log(err));
+      }
+    
  return (
      <div>
      <br/>
@@ -54,8 +59,9 @@ function Saved(){
     <p className="card-text">{book.description}</p>
   </div>
     <DeleteBtn
-    // onClick={() => saveBook(book.id)} 
+    onClick={() => deleteBook(book._id)} 
     />
+         {console.log(book._id)}
     <ViewBtn href={book.link}/>
 </div>
 </div>
