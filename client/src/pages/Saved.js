@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {SaveBtn, ViewBtn} from "../components/btn";
-
+import {DeleteBtn, ViewBtn} from "../components/btn";
 import API from "../utils/API";
 // import SavedResults from "../components/SavedCard"
 import {List, ListItem} from "../components/BookSearchCard";
@@ -20,33 +19,59 @@ function Saved(){
        {console.log(res)
         setBooks(res.data)}
       )
-      .catch(err => console.log(err));
-  };
+      .catch(err => {
+        console.log(err)});
+      };
+      console.log(books)
 
-  let bookSet = books.results
+
  return (
      <div>
      <br/>
    <div className="text-gray-900 font-bold text-xl mb-2">SAVED BOOKS</div>
-   <br/>
-   {bookSet ? (
-                  <List>
-                {bookSet.map(book =>(
-             <ListItem key={book.id}>
-               {/* <Link to={"/books/" + book._id}> */}
-                 <strong>
-                   {book.title} by {book.author}
-                 </strong>
-               {/* </Link> */}
-               {/* <SaveBtn onClick={() => saveBook(book._id)} />
-                    <ViewBtn href={book.link}/> */}
-                  </ListItem>
-           ))}
-         </List>
-           ) : (
+       {/* </div> */}
+       <br/>
+            <div className="text-gray-900 font-bold text-xl mb-2">RESULTS</div>
+            <br/>
+            {console.log(books)}
+            {books ? (
+           <div className="container">
+                
+                {books.map(book =>(
+
+
+  <div className="card mb-3" key={book._id} >
+  <div className="card-header">
+  <h5 className="card-title">{book.title}</h5>
+  </div>
+  <div className="row no-gutters">
+  <div className="col-md-4">
+  <img className="card-img" src={book.image} alt="Card image cap"/>
+  </div>
+  <div className="col-md-8">
+  <div className="card-body">
+    <footer className="blockquote-footer">By: <cite title="Source Title">{book.authors}</cite></footer>
+    <p className="card-text">{book.description}</p>
+  </div>
+    <DeleteBtn
+    // onClick={() => saveBook(book.id)} 
+    />
+    <ViewBtn href={book.link}/>
+</div>
+</div>
+</div>
+
+
+))}
+
+
+          </div>
+        
+          ) : (
             <h3>No Results to Display</h3>
           )}
-     </div>
- );
+          {/* <BookResults/> */}
+        </div>
+      );
 }
 export default Saved;
