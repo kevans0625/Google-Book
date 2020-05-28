@@ -52,15 +52,14 @@ const saveBook = (id) => {
     console.log(id)
     console.log(books.results)
  const result = books.results.find(book => book.id === id)
+ console.log(result.image)
  console.log(result)
     API.saveBook({ 
-      key: result.id,
-      id: result.id,
       title: result.title,
       author: result.authors,
       description: result.description,
       image: result.image,
-      link: result.link
+      link: result.link,
               })
     .then(() => {
       loadBooks()
