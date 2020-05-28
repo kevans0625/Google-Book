@@ -14,8 +14,8 @@ function Search(){
     })
 
     
-const loadBooks = () => {
-        API.searchBook()
+const loadBooks = (book) => {
+        API.searchBook(book)
         .then(res =>{
             if (res.data.items === "error") {
                 throw new Error(res.data.items);
@@ -70,6 +70,7 @@ const saveBook = (id) => {
 
     const handleInputChange = event =>{
         const {name, value} = event.target
+        console.log(event.target)
         setFormObject({...formObject, [name]: value})
     }
     
