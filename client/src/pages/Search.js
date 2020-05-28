@@ -14,15 +14,13 @@ function Search(){
     })
 
     
-const loadBooks = query => {
-        console.log(query)
+const loadBooks = () => {
         API.searchBook()
         .then(res =>{
             if (res.data.items === "error") {
                 throw new Error(res.data.items);
             }
             else {
-                console.log(res)
                 // store response in a array
                 let results = res.data.items
                 //map through the array 
@@ -41,6 +39,8 @@ const loadBooks = query => {
                 })
                 // reset the sate of the empty books array to the new arrays of objects with properties geting back from the response
                 setBooks({ results: results, error: "" })
+                
+                console.log(results)
             }
         })
         .catch(err => setBooks({ error: err.items }));
@@ -48,9 +48,24 @@ const loadBooks = query => {
       };
 
         // Saves a book to the database with a given id, then reloads books from the db
-  function saveBook(id) {
-    API.saveBook(id)
-      .then(res => loadBooks())
+const saveBook = (id) => {
+    console.log(id)
+    console.log(books.results)
+ const result = books.results.find(book => book.id === id)
+ console.log(result)
+    API.saveBook({ 
+      key: result.id,
+      id: result.id,
+      title: result.title,
+      author: result.authors,
+      description: result.description,
+      image: result.image,
+      link: result.link
+              })
+    .then(() => {
+      loadBooks()
+
+         })
       .catch(err => console.log(err));
   }
 
@@ -61,15 +76,15 @@ const loadBooks = query => {
     
     const handleFormSubmit = event =>{
         event.preventDefault();
-            console.log(formObject.search)
-            
+            console.log(formObject.search) 
             loadBooks(formObject.search)
     }
+
 
     let bookSet = books.results
     return(  
     <div>
-      <div className="container"  >
+      {/* <div className="container"  > */}
         <form>
         <Input
             name="search" 
@@ -77,15 +92,12 @@ const loadBooks = query => {
         />
         <SearchButton 
         onClick={handleFormSubmit}/>
-       
         </form>
+      {/* </div> */}
             <br/>
             <div className="text-gray-900 font-bold text-xl mb-2">RESULTS</div>
             <br/>
-            {/* <BookResults/> */}
             {console.log(bookSet)}
-
-      </div>
             {bookSet ? (
            <div className="container">
                 
