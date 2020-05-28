@@ -18,10 +18,10 @@
   font-size: large;
 }
 
-.card {
+/* .card {
   max-width: 540px
 
-}
+} */
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
